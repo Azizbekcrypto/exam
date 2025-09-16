@@ -5,9 +5,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Book, BookHistory } from 'src/core';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([BookHistory, Book])], // ✅ BookHistory + Book
-  controllers: [BookHistoryController], // ✅ BookHistory controller
-  providers: [BookHistoryService], // ✅ BookHistory service
+  imports: [TypeOrmModule.forFeature([BookHistory, Book])], 
+  controllers: [BookHistoryController],  
+  providers: [BookHistoryService],  
   exports: [BookHistoryService],
 })
 export class BookHistoryModule {}

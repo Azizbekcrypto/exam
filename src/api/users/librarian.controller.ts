@@ -18,7 +18,6 @@ import { UpdateUserDto } from "./dto/update-user.dto";
 export class LibrarianController {
   constructor(private readonly userService: UserService) { }
 
-  // ✅ Librarian yaratish (faqat Admin)
   @SwagSuccessRes(
     'create librarian',
     HttpStatus.CREATED,
@@ -36,7 +35,6 @@ export class LibrarianController {
   }
 
 
-  // Pagination bilan barcha librarianlarni olish
   @SwagSuccessRes(
     'get all librarians with pagination',
     HttpStatus.OK,
@@ -58,8 +56,6 @@ export class LibrarianController {
 
 
 
-
-  //  Pagination bilan barcha librarianlarni olish
   @SwagSuccessRes(
     'get all librarians with pagination',
     HttpStatus.OK,
@@ -86,8 +82,6 @@ export class LibrarianController {
   }
 
 
-
-  // Bitta librarianni olish
   @SwagSuccessRes(
     'get one librarian by id',
     HttpStatus.OK,
@@ -104,7 +98,7 @@ export class LibrarianController {
     return this.userService.findOneById(id);
   }
 
-  // Librarian yangilash
+  // yangilash
   @SwagSuccessRes(
     'update librarian successfully',
     HttpStatus.OK,
@@ -121,7 +115,6 @@ export class LibrarianController {
     return this.userService.update(id, dto);
   }
 
-  // Librarianni o‘chirish
   @SwagSuccessRes(
     'delete librarian successfully',
     HttpStatus.OK,

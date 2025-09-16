@@ -5,7 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Book } from 'src/core';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Book])], // ⚡ Book entity repository import qilinadi
+  imports: [TypeOrmModule.forFeature([Book])], 
   providers: [BookService],
   controllers: [BookController],
   exports: [BookService],

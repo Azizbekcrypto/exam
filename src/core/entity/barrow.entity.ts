@@ -8,11 +8,9 @@ export class Borrow {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  // Borrow → User (reader)
   @ManyToOne(() => User, (user) => user.borrows, { onDelete: 'CASCADE' })
   user: User;
 
-  // Borrow → Book
   @ManyToOne(() => Book, (book) => book.borrows, { onDelete: 'CASCADE' })
   book: Book;
 

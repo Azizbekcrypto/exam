@@ -9,7 +9,7 @@ export class CreateBookDto {
 
     @IsNotEmpty()
     @IsNumber()
-    year?: number;
+    published_year?: number;
 
     @IsOptional()
     @IsBoolean()

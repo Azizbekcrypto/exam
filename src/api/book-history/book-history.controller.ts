@@ -13,7 +13,7 @@ import { ApiBearerAuth } from '@nestjs/swagger';
 export class BookHistoryController {
   constructor(private readonly bookHistoryService: BookHistoryService) { }
 
-  //  Qo‘lda tarix qo‘shish (odatda borrow service orqali avtomatik yoziladi)
+  //  ruchnoy tarix kiritish
   @SwagSuccessRes(
     'create history',
     201,
@@ -36,7 +36,7 @@ export class BookHistoryController {
     return this.bookHistoryService.create(dto);
   }
 
-  //  Barcha tarixlar
+  // tarixlar
   @SwagSuccessRes(
     'get history',
     201,
@@ -58,7 +58,6 @@ export class BookHistoryController {
     return this.bookHistoryService.findAll();
   }
 
-  // Bitta tarix
   @SwagSuccessRes(
     ' history',
     201,
@@ -80,7 +79,6 @@ export class BookHistoryController {
     return this.bookHistoryService.findOneById(id);
   }
 
-  //  Yangilash 
   @SwagSuccessRes(
     'update history',
     201,
@@ -105,7 +103,7 @@ export class BookHistoryController {
     return this.bookHistoryService.update(id, dto);
   }
 
-  //  O‘chirish
+ 
 
   @SwagSuccessRes(
       'barcha book larni ochirish ',

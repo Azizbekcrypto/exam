@@ -15,6 +15,6 @@ export class CreateUserDto {
     password: string;
   
     @IsEnum(UserSRole)
-    role: UserSRole; // faqat admin user yaratishda berishi mumkin
+    role: UserSRole; 
   }
   

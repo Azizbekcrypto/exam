@@ -18,7 +18,7 @@ export class BookService extends BaseService<CreateBookDto, UpdateBookDto, Book>
     super(bookRepo);
   }
 
-  // 🔎 Qidirish va filterlash
+  
   async findAllWithFilter(query: any) {
     const where: any = {};
 
@@ -31,19 +31,7 @@ export class BookService extends BaseService<CreateBookDto, UpdateBookDto, Book>
     return successRes(data);
   }
 
-  // async getBookHistory(id: string) {
-  //   const data = await this.bookRepo.findOne({
-  //     where: { id },
-  //     relations: ['histories', 'histories.user'],
-  //   });
-  
-  //   if (!data) {
-  //     throw new HttpException('Book not found', 404);
-  //   }
-  
-  //   return successRes(data.histories?? []);
-  // }
-  
+
 
 
 }

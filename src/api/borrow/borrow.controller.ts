@@ -47,7 +47,7 @@ export class BorrowController {
     'Transaction failed',
   )
   @Post('with-payment')
-  @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN, ) // faqat Customer to‘lov qiladi
+  @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN, ) // faqat Customer to‘lov qilad ni
   @ApiBearerAuth()
   async createWithPayment(@Body() createOrderDto: CreateBorrowDto) {
     return this.borrowService.createBorrowWithHistory(createOrderDto);

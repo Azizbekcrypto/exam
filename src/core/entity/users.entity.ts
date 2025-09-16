@@ -16,7 +16,7 @@ export class User {
 
   @CreateDateColumn()
   createdAt: Date;
-  // Foydalanuvchi roli: reader yoki librarian
+
   @Column({
     type: 'enum',
     enum: UserSRole,
@@ -24,11 +24,9 @@ export class User {
   })
   role: UserSRole;
 
-  // User → Borrow (Reader bo‘lsa)
   @OneToMany(() => Borrow, (borrow) => borrow.user)
   borrows: Borrow[];
 
-  // User → BookHistory (Reader ham, Librarian ham tarixga yoziladi)
   @OneToMany(() => BookHistory, (history) => history.user)
   histories: BookHistory[];
 }

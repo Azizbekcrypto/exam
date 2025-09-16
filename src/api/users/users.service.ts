@@ -16,7 +16,6 @@ export class UserService extends BaseService<CreateUserDto, UpdateUserDto, User>
     super(userRepo);
   }
 
-  // ✅ create override qildik (masalan email unique bo‘lishi kerak bo‘lsa)
   async create(dto: CreateUserDto) {
     const exist = await this.userRepo.findOne({
       where: { email: dto.email },
@@ -26,12 +25,10 @@ export class UserService extends BaseService<CreateUserDto, UpdateUserDto, User>
     return super.create(dto);
   }
 
-  // ✅ update override
   async update(id: string, dto: UpdateUserDto) {
     let user = await this.userRepo.findOne({ where: { id } });
     if (!user) throw new NotFoundException('user not found');
 
-    // email o‘zgarsa tekshiramiz
     if (dto.email && dto.email !== user.email) {
       const exists = await this.userRepo.findOne({
         where: { email: dto.email },

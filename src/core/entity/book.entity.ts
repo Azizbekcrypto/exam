@@ -19,11 +19,9 @@ export class Book {
   @Column({ default: true })
   available: boolean;
 
-  // Book → Borrow
   @OneToMany(() => Borrow, (borrow) => borrow.book)
   borrows: Borrow[];
 
-  // Book → History
   @OneToMany(() => BookHistory, (history) => history.book)
   histories: BookHistory[];
 }

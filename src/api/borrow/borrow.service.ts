@@ -58,6 +58,7 @@ export class BorrowService extends BaseService<
       
 
       
+      // bokHitsory yaratiw
       const bookHistory = manager.getRepository(BookHistory).create({
         bookId: createBorrowDto.bookId,
         userId: createBorrowDto.userId,
@@ -65,7 +66,7 @@ export class BorrowService extends BaseService<
       });
       await manager.getRepository(BookHistory).save(bookHistory);
 
-      //  Natija
+      
       return {
         message: 'Borrow and book history created successfully',
         borrow: savedBorrow,

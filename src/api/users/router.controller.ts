@@ -18,7 +18,6 @@ import { UpdateUserDto } from "./dto/update-user.dto";
 export class ReaderController {
   constructor(private readonly userService: UserService) { }
 
-  // ✅ Reader yaratish (faqat Admin yoki Librarian)
   @SwagSuccessRes(
     'create reader',
     HttpStatus.CREATED,

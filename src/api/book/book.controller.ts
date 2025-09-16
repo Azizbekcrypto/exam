@@ -39,8 +39,7 @@ export class BookController {
     return this.bookService.create(dto);
   }
 
-  //  Barcha kitoblar (qidirish va filterlash bilan)
-  @SwagSuccessRes(
+  @SwagSuccessRes(  // filtrlash
     'barcha book larni olish ',
     201,
     'booklar olindi',
@@ -69,7 +68,7 @@ export class BookController {
     return this.bookService.findOneById(id);
   }
 
-  // ✏️ Yangilash
+  //  Yangilash
   @SwagSuccessRes(
     ' bookni yangilash ',
     201,
@@ -103,10 +102,6 @@ export class BookController {
     return this.bookService.remove(id);
   }
 
-  // // 📜 Kitob tarixi
-  // @Get(':id/history')
-  // getHistory(@Param('id') id: string) {
-  //   return this.bookService.getBookHistory(id);
-  // }
+
 }
 

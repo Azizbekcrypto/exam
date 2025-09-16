@@ -7,7 +7,6 @@ export class BookHistory {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  // 🔹 Book FK
   @Column()
   bookId: string;
 
@@ -15,7 +14,6 @@ export class BookHistory {
   @JoinColumn({ name: 'bookId' })
   book: Book;
 
-  // 🔹 User FK
   @Column()
   userId: string;
 
@@ -27,7 +25,7 @@ export class BookHistory {
   action_date: Date;
 
   @Column()
-  action: string; // borrow | return
+  action: string; 
 
   @CreateDateColumn()
   createdAt: Date;
