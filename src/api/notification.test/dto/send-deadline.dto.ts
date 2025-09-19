@@ -4,7 +4,7 @@ import { IsNotEmpty, IsUUID } from 'class-validator';
 export class SendDeadlineDto {
   @ApiProperty({
     type: 'string',
-    example: '8f5a8b4d-3c1b-4b87-a0d3-d4a6e62b8bcd',
+    example: '0117579b-a66d-4e02-8132-d6ca61e4813c',
     description: 'Borrow ID',
   })
   @IsNotEmpty()

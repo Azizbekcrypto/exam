@@ -1,11 +1,16 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, NotFoundException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, NotFoundException, UseGuards } from '@nestjs/common';
 import { NotificationService } from './notification.test.service';
 import { type barrowRepository, Borrow } from 'src/core';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ApiBody } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody } from '@nestjs/swagger';
 import { SendDeadlineDto } from './dto/send-deadline.dto';
 import { BorrowService } from '../borrow/borrow.service';
+import { AuthGuard } from 'src/common/guard/auth.guard';
+import { RolesGuard } from 'src/common/guard/roles.guard';
+import { Roles } from 'src/common/decorator/roles-decorator';
+import { UserRole } from 'src/common/enum/user-enum';
 
+@UseGuards(AuthGuard, RolesGuard)
 @Controller('notification.test')
 export class NotificationTestController {
   constructor(
@@ -16,6 +21,7 @@ export class NotificationTestController {
 
 
 
+  @ApiBearerAuth()
   @Post('cron/notify')
   @ApiBody({ type: SendDeadlineDto })
   async triggerNotify(@Body() body: SendDeadlineDto) {
@@ -41,6 +47,8 @@ export class NotificationTestController {
 
 
   // Due_datedan kechiksa har kun Jarimani hisoblab yuboradi
+  @ApiBearerAuth()
+  @Roles(UserRole.SUPER_ADMIN, UserRole.ADMIN)
   @Post('cron/penalty')
   @ApiBody({ type: SendDeadlineDto })
   async triggerLateNotify(@Body() body: SendDeadlineDto) {
