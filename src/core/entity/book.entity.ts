@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { BookHistory } from './book.history';
 import { Borrow } from './barrow.entity';
 
@@ -18,6 +18,9 @@ export class Book {
 
   @Column({ default: true })
   available: boolean;
+
+  @CreateDateColumn()
+  created_at: Date
 
   @OneToMany(() => Borrow, (borrow) => borrow.book)
   borrows: Borrow[];

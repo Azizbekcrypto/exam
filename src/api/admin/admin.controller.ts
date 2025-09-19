@@ -10,6 +10,7 @@ import {
   HttpStatus,
   Res,
   Query,
+  ParseUUIDPipe,
 } from '@nestjs/common';
 import { AdminService } from './admin.service';
 import { CreateAdminDto } from './dto/create-admin.dto';
@@ -208,9 +209,10 @@ export class AdminController {
   @Roles(UserRole.SUPER_ADMIN, 'ID')
   @Get(':id')
   @ApiBearerAuth()
-  findOneById(@Param('id') id: string) {
+  findOneById(@Param('id', ParseUUIDPipe) id: string) {
     return this.adminService.findOneById(id);
   }
+  
   @SwagSuccessRes(
     'update admin successfully',
     HttpStatus.OK,
@@ -225,11 +227,11 @@ export class AdminController {
     400,
     'username already exists',
   )
-  @Roles(UserRole.SUPER_ADMIN, 'ID') /**kallani ishlating jigar */
+  @Roles(UserRole.SUPER_ADMIN, 'ID') 
   @Patch(':id')
   @ApiBearerAuth()
   update(
-    @Param('id') id: string,
+    @Param('id', ParseUUIDPipe) id: string,
     @Body() updateAdminDto: UpdateAdminDto,
     @GetRequestUser('user') user: IPayload,
   ) {
@@ -253,7 +255,7 @@ export class AdminController {
   @Roles(UserRole.SUPER_ADMIN)
   @Delete(':id')
   @ApiBearerAuth()
-  remove(@Param('id') id: string) {
+  remove(@Param('id', ParseUUIDPipe) id: string) {
     return this.adminService.remove(id);
   }
 }

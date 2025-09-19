@@ -62,6 +62,7 @@ export class AdminService extends BaseService<
     const exist = await this.adminRepo.findOne({ where: { username } });
     if (exist) throw new HttpException('Username already exists', 400);
 
+
     const hashed_password = await this.crypto.encrypt(password);
 
     return super.create({
@@ -73,7 +74,10 @@ export class AdminService extends BaseService<
 
   async signIn(signInDto: SignInDto, res: Response) {
     const { username, password } = signInDto;
+
+
     const admin = await this.adminRepo.findOne({ where: { username } });
+    if (!admin) throw new NotFoundException('Admin not found');
     const isMatchPassword = await this.crypto.decrypt(
       password,
       admin?.hashed_password as any,
@@ -98,10 +102,12 @@ export class AdminService extends BaseService<
     dto: UpdateAdminDto,
     user: IPayload,
   ): Promise<ISuccessRes> {
+
+
     const { password, username, ...rest } = dto;
 
     let admin = await this.adminRepo.findOne({ where: { id } });
-    if (!admin) throw new NotFoundException('admin not found');
+    if (!admin) throw new NotFoundException('Admin not found');
 
     // Username faqat o‘zgarganda tekshiriladi
     if (username && username !== admin.username) {

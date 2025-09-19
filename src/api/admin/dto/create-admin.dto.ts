@@ -10,7 +10,7 @@ export class CreateAdminDto {
   @ApiProperty({
     type: 'string',
     description: 'user_name for admin',
-    example: 'developer',
+    example: 'Eshmat',
   })
   @IsString()
   @IsNotEmpty()
@@ -25,20 +25,11 @@ export class CreateAdminDto {
   @IsNotEmpty()
   full_name: string;
 
-  @ApiProperty({
-    type: 'string',
-    description: 'email for admin',
-    example: 'khayrullayevbinance@gmail.com',
-  })
-  @IsEmail()
-  @IsNotEmpty()
-  email: string;
-
   @IsNotEmpty()
   @ApiProperty({
     type: 'string',
     description: 'Password for admin',
-    example: 'Developer1!',
+    example: 'Eshmat123!',
   })
   @IsStrongPassword()
   password: string;

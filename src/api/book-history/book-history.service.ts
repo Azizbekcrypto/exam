@@ -20,6 +20,4 @@ export class BookHistoryService extends BaseService<
     super(bookHistoryRepo);
   }
 
-
-  // Vaqtim yetmadi qoshimcha logikaga
 }

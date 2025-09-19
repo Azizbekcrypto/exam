@@ -7,6 +7,7 @@ export class BookHistory {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+
   @Column()
   bookId: string;
 
@@ -32,4 +33,6 @@ export class BookHistory {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  
 }

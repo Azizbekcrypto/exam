@@ -18,21 +18,22 @@ export class BookService extends BaseService<CreateBookDto, UpdateBookDto, Book>
     super(bookRepo);
   }
 
-  
-  async findAllWithFilter(query: any) {
-    const where: any = {};
 
-    if (query.title) where.title = ILike(`%${query.title}%`);
-    if (query.author) where.author = ILike(`%${query.author}%`);
-    if (query.year) where.year = query.year;
-    if (query.available !== undefined) where.available = query.available === 'true';
 
-    const data = await this.bookRepo.find({ where });
-    return successRes(data);
+
+  async findTopBooks() {
+    return this.bookRepo
+      .createQueryBuilder('book')
+      .leftJoin('book.borrows', 'borrow')
+      .select('book.id', 'id')
+      .addSelect('book.title', 'title')
+      .addSelect('COUNT(borrow.id)', 'borrowCount')
+      .groupBy('book.id')
+      .addGroupBy('book.title')
+      .orderBy('"borrowCount"', 'DESC')
+      .limit(5)
+      .getRawMany();
   }
-
-
-
 
 }
 

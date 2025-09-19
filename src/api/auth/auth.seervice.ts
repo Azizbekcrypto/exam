@@ -12,7 +12,7 @@ import { Response } from 'express';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly jwt: TokenService) {}
+  constructor(private readonly jwt: TokenService) { }
 
   async newToken(repository: Repository<any>, token: string) {
     const data: any = await this.jwt.verifyToken(
@@ -55,4 +55,8 @@ export class AuthService {
     res.clearCookie(tokenKey);
     return successRes({});
   }
-}
+
+ 
+} 
+
+  

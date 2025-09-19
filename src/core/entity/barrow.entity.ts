@@ -21,8 +21,11 @@ export class Borrow {
   due_date: Date;
 
   @Column({ type: 'timestamp', nullable: true })
-  return_date: Date;
+  return_date: Date | null
 
   @Column({ default: false })
   overdue: boolean;
+
+  @Column({ type: 'int', default: 0 })
+  penalty: number;
 }

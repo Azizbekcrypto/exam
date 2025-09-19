@@ -60,7 +60,7 @@ export class BaseService<CreateDto, UpdateDto, Entity> {
       where: { id, ...options?.where },
     })) as unknown as Entity;
     if (!data) {
-      throw new HttpException('not found', 404);
+      throw new HttpException('Not found', 404);
     }
     return successRes(data);
   }

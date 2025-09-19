@@ -1,9 +1,17 @@
-import { Module } from '@nestjs/common';
-import { NotificationTestService } from './notification.test.service';
+import { forwardRef, Module } from '@nestjs/common';
+import { NotificationService } from './notification.test.service';
 import { NotificationTestController } from './notification.test.controller';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Borrow } from 'src/core';
+import { BorrowModule } from '../borrow/borrow.module';
 
 @Module({
+  imports: [
+    TypeOrmModule.forFeature([Borrow]), 
+    forwardRef(() => BorrowModule), // ✅ forwardRef ishlatildi
+  ],
   controllers: [NotificationTestController],
-  providers: [NotificationTestService],
+  providers: [NotificationService],
+  exports: [NotificationService],
 })
 export class NotificationTestModule {}
